@@ -14,6 +14,7 @@ python3 coderunner.py
 
 * coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
 * virusSpread.py -> Contains the methods and classes.
+* test.py -> Test cases for testing
 * input.txt -> Sample input to be used in command line
 * hospital.ipynb -> Python notebook showing Matrix method (outdated)
 * virus_spread.ipynb -> Python notebook showing Graph method (outdated)
