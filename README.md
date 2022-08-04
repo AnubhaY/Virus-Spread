@@ -8,14 +8,15 @@ pip install -r requirements.txt
 python3 coderunner.py
 ```
 
-![plot](./command.PNG)
+![plot](./imgs/command.PNG)
 
 ## Files
 
 * coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
 * virusSpread.py -> Contains the methods and classes.
-* hospital.ipynb -> Python notebook showing Matrix method
-* virus_spread.ipynb -> Python notebook showing Graph method
+* input.txt -> Sample input to be used in command line
+* hospital.ipynb -> Python notebook showing Matrix method (outdated)
+* virus_spread.ipynb -> Python notebook showing Graph method (outdated)
 
 ## Solution
 
@@ -43,3 +44,5 @@ Can use following snippet to view graph as well.
     matrix = MatrixGenerator.generate(data, algo='grid')
     print(matrix.timer_till_all_infected())
     matrix.draw_graph()
+
+![plot](./imgs/graph.png)
