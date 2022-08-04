@@ -3,9 +3,10 @@
 ## Execution
 ### Requirements: Python3
 
+```
 pip install -r requirements.txt
 python3 coderunner.py
-
+```
 coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
 
 virusSpread.py -> Contains the methods and classes.
