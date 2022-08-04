@@ -4,14 +4,15 @@ import networkx as nx
 import pandas as pd
 import itertools
 import time
+import matplotlib.pyplot as plt
 
 class MatrixGenerator():
     @classmethod
-    def generate(self, matrix_list: list, method='matrix'):
+    def generate(self, matrix_list: list, algo='matrix'):
         matrix = np.array(matrix_list, np.int32)
-        if method == 'matrix':
+        if algo == 'matrix':
             product = InfectionSpread()
-        elif method == 'grid':
+        elif algo == 'grid':
             product = InfectionGraph()
         else:
             raise NotImplementedError
@@ -105,6 +106,7 @@ class InfectionGraph(InfectionMatrix):
     def input_layout(self, initial_matrix) -> None:
         self.virus = []
         self.labels = {}
+        self.color_map = []
         x,y = initial_matrix.shape
         self.G = nx.grid_2d_graph(x,y) # Create grid graph
 
@@ -112,15 +114,23 @@ class InfectionGraph(InfectionMatrix):
         for a,b in itertools.product(range(x), range(y)):
             data = initial_matrix[a,b]
             coordinates = (a,b)
-            self.labels[coordinates] = f'{data} {coordinates}'
+            
             if data == 0: # Empty node
-                self.labels.pop(coordinates)
                 self.G.remove_node(coordinates)
-            if data == 2: # Virus node
+                
+            elif data == 1: # Uninfected
+                self.labels[coordinates] = f'{coordinates}'
+                self.color_map.append('blue')
+                
+            else: # Virus node
                 self.virus.append(coordinates)
+                self.labels[coordinates] = f'{coordinates}'
+                self.color_map.append('red')
 
     def draw_graph(self) -> None:
-        nx.draw(G, labels=labels)
+        nx.draw(self.G, labels=self.labels, node_color=self.color_map, pos=nx.spring_layout(self.G, iterations=20))
+        plt.draw()
+        plt.show()
         
     def timer_till_all_infected(self) -> int:
         # create a 2d list of all shortest paths from each virus node using dijkstra
@@ -134,5 +144,6 @@ class InfectionGraph(InfectionMatrix):
 
 if __name__ == "__main__":
     data = [[2, 1, 0, 2, 1], [1, 0, 1, 2, 1], [1, 0, 0, 2, 1]]
-    matrix = MatrixGenerator.generate(data, method='matrix')
+    matrix = MatrixGenerator.generate(data, algo='grid')
     print(matrix.timer_till_all_infected())
+    matrix.draw_graph()
