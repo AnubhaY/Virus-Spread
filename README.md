@@ -8,6 +8,8 @@ pip install -r requirements.txt
 python3 coderunner.py
 ```
 
+![plot](./command.PNG)
+
 ## Files
 
 * coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
@@ -37,7 +39,7 @@ This allows future compatibility:
 
 Can use following snippet to view graph as well.
 
-    data = [[2, 1, 0, 2, 1], [1, 0, 1, 2, 1], [1, 0, 0, 2, 1]]
+    data = [[2, 1, 0, 2, 1], [1, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
     matrix = MatrixGenerator.generate(data, algo='grid')
     print(matrix.timer_till_all_infected())
     matrix.draw_graph()

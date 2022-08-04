@@ -86,21 +86,24 @@ class InfectionSpread(InfectionMatrix):
         
     def timer_till_all_infected(self) -> int:
         counter = 0
-        total_infected_previous = self.infected_count()
+        total_infected = self.infected_count()
+        if total_infected == 0:
+            return -1 # Since no one is infected, no virus
+        total_infected_previous = 0
         total_occupied = self.occupancy_count()
         while True:
-            counter += 1
-            self.spread() 
-            
-            total_infected = self.infected_count()
             
             if total_infected == total_occupied: # virus is spread to all
                 return counter # return counter
                 
             elif total_infected == total_infected_previous: # virus is no longer spreading
                 return -1 # cannot be done
-            else:
-                total_infected_previous = total_infected # update previous counter
+            
+            total_infected_previous = total_infected # update previous counter
+            counter += 1
+            self.spread() 
+            total_infected = self.infected_count()
+
 
 class InfectionGraph(InfectionMatrix):
     def input_layout(self, initial_matrix) -> None:
@@ -139,11 +142,16 @@ class InfectionGraph(InfectionMatrix):
             data.append(nx.shortest_path_length(self.G, item))
             
         df = pd.DataFrame(data) # convert to dataframe
-        
+        if df.empty:
+            return -1
+        if len(df.columns) < len(self.G.nodes()): # Some nodes not reachable
+            return -1 
         return int(df.min().max()) # max of (min reachable of each node)
 
 if __name__ == "__main__":
-    data = [[2, 1, 0, 2, 1], [1, 0, 1, 2, 1], [1, 0, 0, 2, 1]]
-    matrix = MatrixGenerator.generate(data, algo='grid')
+    algo = 'grid'
+    data = [[2, 1, 0, 2, 1], [1, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
+    matrix = MatrixGenerator.generate(data, algo=algo)
     print(matrix.timer_till_all_infected())
-    matrix.draw_graph()
+    if algo == 'grid':
+        matrix.draw_graph()
