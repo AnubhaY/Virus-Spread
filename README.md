@@ -7,9 +7,13 @@
 pip install -r requirements.txt
 python3 coderunner.py
 ```
-coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
 
-virusSpread.py -> Contains the methods and classes.
+## Files
+
+* coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
+* virusSpread.py -> Contains the methods and classes.
+* hospital.ipynb -> Python notebook showing Matrix method
+* virus_spread.ipynb -> Python notebook showing Graph method
 
 ## Solution
 
