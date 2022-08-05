@@ -1,4 +1,14 @@
+# Problem Statement
+<details>
+<summary> Click to expand</summary>
+There is a virus spreading at the General Hospital. The hospital has an array of M x N wards, where M is the number of rows and N the number of columns. Each ward can be empty or have multiple patients. Each cell in the matrix can have a value of 0, 1 or 2 with the following meaning:
 
+* The ward is empty
+* The ward has uninfected patients
+* The ward has infected patients
+
+The infection can spread from an infected ward to an uninfected one only up, down, left and right in the matrix of wards during one unit of time. Empty wards cannot propagate the infection. Develop a program to help determine the minimum units of time after which all patients will be infected at the hospital. If all patients are not infected after an infinite amount of time, then return –1.
+</details>
 
 ## Execution
 ### Requirements: Python3
