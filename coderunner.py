@@ -8,6 +8,12 @@ if __name__=="__main__":
     
     for i in range(int(x)):
         data.append(input().split())
+    
+    try:    
+        matrix = virusSpread.MatrixGenerator.generate(data, algo=algorithm)
+        print(f'{matrix.timer_till_all_infected()}')
+    except Exception as e:
+        print(e)
         
-    matrix = virusSpread.MatrixGenerator.generate(data, algo=algorithm)
-    print(f'{matrix.timer_till_all_infected()}')
+    
+    

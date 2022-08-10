@@ -1,4 +1,14 @@
+# Problem Statement
+<details>
+<summary> Click to expand</summary>
+There is a virus spreading at the General Hospital. The hospital has an array of M x N wards, where M is the number of rows and N the number of columns. Each ward can be empty or have multiple patients. Each cell in the matrix can have a value of 0, 1 or 2 with the following meaning:
 
+* The ward is empty
+* The ward has uninfected patients
+* The ward has infected patients
+
+The infection can spread from an infected ward to an uninfected one only up, down, left and right in the matrix of wards during one unit of time. Empty wards cannot propagate the infection. Develop a program to help determine the minimum units of time after which all patients will be infected at the hospital. If all patients are not infected after an infinite amount of time, then return –1.
+</details>
 
 ## Execution
 ### Requirements: Python3
@@ -8,12 +18,16 @@ pip install -r requirements.txt
 python3 coderunner.py
 ```
 
+![plot](./imgs/command.PNG)
+
 ## Files
 
 * coderunner.py -> Executes the code. Enter input directly. It does not give any output prior to input.
 * virusSpread.py -> Contains the methods and classes.
-* hospital.ipynb -> Python notebook showing Matrix method
-* virus_spread.ipynb -> Python notebook showing Graph method
+* test.py -> Test cases for testing
+* input.txt -> Sample input to be used in command line
+* hospital.ipynb -> Python notebook showing Matrix method (outdated)
+* virus_spread.ipynb -> Python notebook showing Graph method (outdated)
 
 ## Solution
 
@@ -37,7 +51,9 @@ This allows future compatibility:
 
 Can use following snippet to view graph as well.
 
-    data = [[2, 1, 0, 2, 1], [1, 0, 1, 2, 1], [1, 0, 0, 2, 1]]
+    data = [[2, 1, 0, 2, 1], [1, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
     matrix = MatrixGenerator.generate(data, algo='grid')
     print(matrix.timer_till_all_infected())
     matrix.draw_graph()
+
+![plot](./imgs/graph.png)
